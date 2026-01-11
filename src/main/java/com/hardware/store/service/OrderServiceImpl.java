@@ -73,8 +73,8 @@ public class OrderServiceImpl implements OrderService {
     private Order createEmptyOrder(User user) {
         Order order = new Order();
         order.setUser(user);
-        order.setStatus(OrderStatus.PENDING); // Mucho más corto y claro
-        order.setTotalAmount(BigDecimal.ZERO); // Mucho más corto
+        order.setStatus(OrderStatus.PENDING);
+        order.setTotalAmount(BigDecimal.ZERO);
         order.setItems(new ArrayList<>());
         return order;
     }
@@ -91,7 +91,7 @@ public class OrderServiceImpl implements OrderService {
             validateAndUpdateStock(product, itemDto.getQuantity());
 
             // Crear item
-            OrderItem orderItem = new OrderItem(); // ¡Mira qué limpio!
+            OrderItem orderItem = new OrderItem();
             orderItem.setProduct(product);
             orderItem.setOrder(order);
             orderItem.setQuantity(itemDto.getQuantity());
