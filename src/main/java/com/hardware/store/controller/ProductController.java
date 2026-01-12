@@ -1,7 +1,6 @@
 package com.hardware.store.controller;
 
 import com.hardware.store.dto.ProductDto;
-import com.hardware.store.entity.Product;
 import com.hardware.store.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
