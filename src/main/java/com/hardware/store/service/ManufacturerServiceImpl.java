@@ -5,12 +5,14 @@ import com.hardware.store.entity.Manufacturer;
 import com.hardware.store.exception.ResourceNotFoundException;
 import com.hardware.store.mapper.ManufacturerMapper;
 import com.hardware.store.repository.ManufacturerRepository;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 @Service
 @RequiredArgsConstructor
 public class ManufacturerServiceImpl implements ManufacturerService{
@@ -57,7 +59,7 @@ public class ManufacturerServiceImpl implements ManufacturerService{
         Manufacturer saveManufacturer  = manufacturerRepository.save(manufacturer);
 
         // PASO 3: Convertir la entidad guardada (con ID) a DTO para responder
-        return manufacturerMapper.manufacturerToDto(manufacturer);
+        return manufacturerMapper.manufacturerToDto(saveManufacturer);
     }
 
     @Override

@@ -79,6 +79,13 @@ public class OrderServiceImpl implements OrderService {
         return order;
     }
 
+    @Override
+    public OrderDto getOrderById(Integer id) {
+        Order order = orderRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Order not found with id: " + id));
+        return orderMapper.orderToDto(order);
+    }
+
     private void processOrderItems(Order order, List<OrderItemDto> itemsDto) {
         BigDecimal total = BigDecimal.ZERO;
 

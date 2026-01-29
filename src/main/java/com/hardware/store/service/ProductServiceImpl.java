@@ -71,31 +71,32 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public ProductDto updateProduct(Integer id, ProductDto productDto) {
-        //1. Buscar el producto existente
+        // 1. Buscar el producto existente (EL QUE TIENE EL ID)
         Product existingProduct = productRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("Product not found"));
 
-        //2. Buscar la Categoria
+        // 2. Buscar la Categoria nueva
         Category existingCategory = categoryRepository.findById(productDto.getCategoryId())
                 .orElseThrow(()-> new ResourceNotFoundException("Category not found"));
 
-        //3. Buscar el Manufacturer
+        // 3. Buscar el Manufacturer nuevo
         Manufacturer existingManufacturer = manufacturerRepository.findById(productDto.getManufacturerId())
                 .orElseThrow(()-> new ResourceNotFoundException("Manufacturer not found"));
 
-        //4. Actualizar Todos los Campos
+        // 4. Actualizar los campos SOBRE EL PRODUCTO EXISTENTE
         existingProduct.setName(productDto.getName());
         existingProduct.setDescription(productDto.getDescription());
         existingProduct.setPrice(productDto.getPrice());
         existingProduct.setStock(productDto.getStock());
 
-        //4. Actualizamos las relaciones
+        // 5. Actualizar relaciones
         existingProduct.setCategory(existingCategory);
         existingProduct.setManufacturer(existingManufacturer);
-        Product updatedProduct = productMapper.dtoToEntity(productDto);
-        productRepository.save(updatedProduct);
 
-        return productMapper.productToDto(updatedProduct);
+        // 6. GUARDAR EL EXISTENTE (Aquí está la corrección)
+        Product savedProduct = productRepository.save(existingProduct);
+
+        return productMapper.productToDto(savedProduct);
     }
 
     @Override

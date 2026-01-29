@@ -11,5 +11,7 @@ public interface OrderService {
     List<OrderDto>getUserOrders(Integer userId);
 
     OrderDto createOrder(OrderDto orderDto);
+    // AGREGA ESTO:
+    OrderDto getOrderById(Integer id);
 
 }
