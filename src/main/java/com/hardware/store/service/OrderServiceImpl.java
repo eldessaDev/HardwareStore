@@ -7,6 +7,7 @@ import com.hardware.store.entity.OrderItem; // Importado
 import com.hardware.store.entity.OrderStatus; // Importado
 import com.hardware.store.entity.Product;     // Importado
 import com.hardware.store.entity.User;
+import com.hardware.store.exception.OutOfStockException;
 import com.hardware.store.exception.ResourceNotFoundException;
 import com.hardware.store.mapper.OrderMapper;
 import com.hardware.store.repository.OrderRepository;
@@ -28,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
 
-    private final OrderMapper orderMapper = new OrderMapper();
+    private final OrderMapper orderMapper;
 
     @Override
     public List<OrderDto> getAllOrders() {
@@ -116,7 +117,7 @@ public class OrderServiceImpl implements OrderService {
 
     private void validateAndUpdateStock(Product product, Integer quantity) {
         if (product.getStock() < quantity) {
-            throw new RuntimeException("Sin stock suficiente para: " + product.getName());
+            throw new OutOfStockException("Sin stock suficiente para: " + product.getName());
         }
         product.setStock(product.getStock() - quantity);
         productRepository.save(product);

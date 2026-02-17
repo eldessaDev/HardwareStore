@@ -2,6 +2,7 @@ package com.hardware.store.controller;
 
 import com.hardware.store.dto.CategoryDto;
 import com.hardware.store.service.CategoryService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,14 +30,14 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto categoryDto){
+    public ResponseEntity<CategoryDto> createCategory(@Valid @RequestBody CategoryDto categoryDto){
         CategoryDto newCategoryDto  = categoryService.createCategory(categoryDto);
         return ResponseEntity.ok(newCategoryDto);
 
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CategoryDto>updateCategory(@PathVariable Integer id, @RequestBody CategoryDto categoryDto){
+    public ResponseEntity<CategoryDto>updateCategory(@PathVariable Integer id, @Valid @RequestBody CategoryDto categoryDto){
         CategoryDto newCategoryDto  = categoryService.updateCategory(id, categoryDto);
         return ResponseEntity.ok(newCategoryDto);
 

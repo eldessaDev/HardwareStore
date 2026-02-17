@@ -2,7 +2,10 @@ package com.hardware.store.mapper;
 
 import com.hardware.store.dto.OrderItemDto;
 import com.hardware.store.entity.OrderItem;
+import lombok.extern.apachecommons.CommonsLog;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderItemMapper {
 
     // 1. De la Base de Datos (Entity) -> Hacia afuera (DTO)

@@ -4,13 +4,18 @@ import com.hardware.store.dto.OrderDto;
 import com.hardware.store.dto.OrderItemDto;
 import com.hardware.store.entity.Order;
 import com.hardware.store.entity.OrderItem;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
+@RequiredArgsConstructor
 public class OrderMapper {
 
     // Instanciamos tu mapper anterior
-    private final OrderItemMapper orderItemMapper = new OrderItemMapper();
+    private final OrderItemMapper orderItemMapper;
 
     public OrderDto orderToDto(Order order){
         if (order == null){

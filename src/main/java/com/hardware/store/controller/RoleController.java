@@ -2,6 +2,7 @@ package com.hardware.store.controller;
 
 import com.hardware.store.dto.RoleDto;
 import com.hardware.store.service.RoleService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class RoleController {
     }
 
     @PostMapping
-    public ResponseEntity<RoleDto> createRole(@RequestBody RoleDto roleDto) {
+    public ResponseEntity<RoleDto> createRole(@Valid @RequestBody RoleDto roleDto) {
         return ResponseEntity.ok(roleService.createRole(roleDto));
     }
 }

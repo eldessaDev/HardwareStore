@@ -2,6 +2,7 @@ package com.hardware.store.controller;
 
 import com.hardware.store.dto.OrderDto;
 import com.hardware.store.service.OrderService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus; // Importante para el status 201
 import org.springframework.http.ResponseEntity;
@@ -31,7 +32,7 @@ public class OrderController {
     // 3. ⚔️ CREAR LA ORDEN ⚔️
     // Usamos tu OrderDto existente como "Request"
     @PostMapping
-    public ResponseEntity<OrderDto> createOrder(@RequestBody OrderDto orderDto) {
+    public ResponseEntity<OrderDto> createOrder(@Valid @RequestBody OrderDto orderDto) {
         // Asumimos que tu servicio recibe un OrderDto y devuelve la orden creada
         OrderDto newOrder = orderService.createOrder(orderDto);
         return new ResponseEntity<>(newOrder, HttpStatus.CREATED);

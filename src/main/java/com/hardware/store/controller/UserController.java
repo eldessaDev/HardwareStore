@@ -3,6 +3,7 @@ package com.hardware.store.controller;
 import com.hardware.store.dto.UserDto;
 import com.hardware.store.dto.UserRegisterDto;
 import com.hardware.store.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserDto> createUser(@RequestBody UserRegisterDto userRegisterDto) {
+    public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserRegisterDto userRegisterDto) {
         return ResponseEntity.ok(userService.createUser(userRegisterDto));
     }
 

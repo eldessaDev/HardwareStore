@@ -1,6 +1,9 @@
 package com.hardware.store.dto;
 
 import com.hardware.store.entity.OrderStatus;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,9 +17,14 @@ import java.util.List;
 public class OrderDto {
 
     private Integer id;
+
     private BigDecimal totalAmount;
     private OrderStatus status;
+
+    @NotNull(message = "{order.user.mandatory}")
     private Integer userId;
-    private List<OrderItemDto> items;
+
+    @NotEmpty(message = "{order.items.empty}")
+    private List<@Valid OrderItemDto> items;
 
 }
